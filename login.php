@@ -27,7 +27,7 @@ if(isset($_POST['username'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Login Aplikasi Kasir</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@ if(isset($_POST['username'])) {
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary-emphasis">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
@@ -45,7 +45,7 @@ if(isset($_POST['username'])) {
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                                <img src="img/bn.jpg" alt="Login Image" class="img-fluid" style="max-width: 70%; height: auto;">
+                                <img src="img/bn.png" alt="Login Image" class="img-fluid" style="max-width: 70%; height: auto;">
                             </div>
                             
                             <div class="col-lg-6">

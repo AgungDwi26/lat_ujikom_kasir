@@ -30,7 +30,7 @@ if(isset($_POST['username'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Daftar Aplikasi Kasir</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -52,7 +52,7 @@ if(isset($_POST['username'])) {
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5  d-flex align-items-center justify-content-center">
-                        <img src="img/bn.jpg" alt="" class="img-fluid" style="max-width: 70%; height: auto;">
+                        <img src="img/bn.png" alt="" class="img-fluid" style="max-width: 70%; height: auto;">
                     </div>
                     <div class="col-lg-7">
                         <div class="p-5">
@@ -79,7 +79,7 @@ if(isset($_POST['username'])) {
                             <hr>
                            
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="login.php">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
