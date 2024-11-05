@@ -5,6 +5,20 @@ if (!isset($_SESSION['user'])) {
     header('location:login.php');
     exit;
 }
+
+function getBarangSeringDibeli($limit = 5) {
+    global $connect;
+
+    $query = "SELECT id_produk, COUNT(*) as jumlah_produk FROM detail_penjualan GROUP BY kode_produk ORDER BY jumlah_produk DESC LIMIT $limit";
+    $result = mysqli_query($connect, $query);
+
+    $barang_sering_dibeli = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $barang_sering_dibeli[] = $row;
+    }
+
+    return $barang_sering_dibeli;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

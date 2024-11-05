@@ -4,9 +4,10 @@
         <a href="#" class="d-flex d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Tambah data
         </a>
-        <button class="d-flex d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="printData()">
-            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-        </button>
+        <button class="d-flex d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="window.print()">
+    <i class="fas fa-download fa-sm text-white-50"></i>Print Data
+</button>
+
     </div>
     
     <div class="row">
@@ -76,5 +77,38 @@
             </div>
         </div>
     </div>
+
+    <div class="card shadow text-light bg-secondary mb-4">
+                <div class="card-body py-3">
+                    <h6 class="m-0 font-weight-bold">Data Barang Sering Dipinjam</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-light" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Kode Barang</th>
+                                    <th>Jumlah Pinjam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                // Panggil fungsi getBarangSeringDipinjam() dari database.php
+                                $barang_sering_dipinjam = getBarangSeringDibeli();
+                                foreach ($barang_sering_dipinjam as $barang) : 
+                                ?>
+                                <tr>
+                                    <td><?php echo $barang['kode_produk']; ?></td>
+                                    <td><?php echo $barang['jumlah_produk']; ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
 </div>
 

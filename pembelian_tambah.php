@@ -14,11 +14,11 @@
             $pr = mysqli_fetch_array(mysqli_query($koneksi, "SELECT*FROM produk where id_produk=$key"));
             
             if($val > 0) {
-            $sub = $val * $pr['harga'];
-            $total += $sub;
-            $query = mysqli_query($koneksi, "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah_produk, subtotal) VALUES ('$id_penjualan', '$key', '$val', '$sub')");
+                $sub = $val * $pr['harga'];
+                $total += $sub;
+                $query = mysqli_query($koneksi, "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah_produk, subtotal) VALUES ('$id_penjualan', '$key', '$val', '$sub')");
 
-            $updateProduk = mysqli_query($koneksi, "UPDATE produk set stok=stok-$val WHERE id_produk=$key");
+                $updateProduk = mysqli_query($koneksi, "UPDATE produk set stok=stok-$val WHERE id_produk=$key");
             }
         }
 
@@ -33,21 +33,21 @@
 ?>
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">pembelian</h1>
+        <h1 class="h3 mb-0 text-gray-800">Pembelian</h1>
         <a href="#" class="d-flex d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+            <i class="fas fa-download fa-sm text-white-50"></i> Print Data
         </a>
-        
         <a href="?page=pembelian" class="btn btn-danger">Kembali</a>
     </div>
 
-    <form method="post">
+    <form method="post" onsubmit="return validateForm()">
         <table class="table table-borderless">
             <tr>
                 <td width="200">Nama Pelanggan</td>
                 <td width="1">:</td>
                 <td>
-                    <select name="id_pelanggan" class="form-control form-select">
+                    <select name="id_pelanggan" class="form-control form-select" id="id_pelanggan">
+                        <option value="">Pilih Pelanggan</option>
                         <?php 
                             $p = mysqli_query($koneksi, "SELECT*FROM pelanggan");
                             while($pel = mysqli_fetch_array($p)){
@@ -66,8 +66,8 @@
             <tr>
                 <td><?php echo $produk['nama_produk'] . '(Stock : '.$produk['stok'].')'; ?></td>
                 <td>:</td>
-                <td><input type="number" class="form-control" 
-                step="0" value="0" max="<?php echo $produk['stok']; ?>"  name="produk[<?php echo $produk['id_produk']; ?>]"></td>
+                <td><input type="number" class="form-control product-input" 
+                step="0" value="0" max="<?php echo $produk['stok']; ?>" name="produk[<?php echo $produk['id_produk']; ?>]"></td>
             </tr>
             <?php 
                 }
@@ -81,9 +81,33 @@
                 </td>
             </tr>
         </table>
-
     </form>
+</div>
 
-    </div>
+<script>
+function validateForm() {
+    const pelanggan = document.getElementById('id_pelanggan').value;
+    const productInputs = document.querySelectorAll('.product-input');
+    let isProductSelected = false;
 
-    
+    // Check if a customer is selected
+    if (pelanggan === "") {
+        alert("Pilih pelanggan terlebih dahulu!");
+        return false;
+    }
+
+    // Check if at least one product quantity is greater than 0
+    productInputs.forEach(input => {
+        if (input.value > 0) {
+            isProductSelected = true;
+        }
+    });
+
+    if (!isProductSelected) {
+        alert("Isi terlebih dahulu data produk di atas!");
+        return false;
+    }
+
+    return true;
+}
+</script>

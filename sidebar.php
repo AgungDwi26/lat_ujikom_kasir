@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon">
             <img src="img/bn.png" alt="" class="img-fluid" style="max-width: 70%; height: auto;">
         </div>
-        <div class="sidebar-brand-text mx-3">Aplikasi Kasir <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Aplikasi Kasir</div>
     </a>
 
     <!-- Divider -->
