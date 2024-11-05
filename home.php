@@ -77,38 +77,16 @@
             </div>
         </div>
     </div>
-
-    <div class="card shadow text-light bg-secondary mb-4">
-                <div class="card-body py-3">
-                    <h6 class="m-0 font-weight-bold">Data Barang Sering Dipinjam</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered text-light" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Kode Barang</th>
-                                    <th>Jumlah Pinjam</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                // Panggil fungsi getBarangSeringDipinjam() dari database.php
-                                $barang_sering_dipinjam = getBarangSeringDibeli();
-                                foreach ($barang_sering_dipinjam as $barang) : 
-                                ?>
-                                <tr>
-                                    <td><?php echo $barang['kode_produk']; ?></td>
-                                    <td><?php echo $barang['jumlah_produk']; ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </div>
+    <div class="jumbotron">
+    <h1 class="display-4">Produk Terlaris!</h1>
+    <p class="lead">Produk yang paling banyak terjual di toko ini adalah:</p>
+    <hr class="my-4">
+    <h2><?php echo $data_produk_terlaris['nama_produk']; ?></h2>
+    <p>Harga: Rp <?php echo number_format($data_produk_terlaris['harga']); ?></p>
+    <p>Jumlah Terjual: <?php echo $data_produk_terlaris['total_terjual']; ?> pcs</p>
 </div>
+
+        </div>
+
+    
 

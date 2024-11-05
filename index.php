@@ -6,19 +6,16 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
-function getBarangSeringDibeli($limit = 5) {
-    global $connect;
+$produk_terlaris = mysqli_query($koneksi, "
+    SELECT produk.nama_produk, produk.harga, SUM(detail_penjualan.jumlah_produk) AS total_terjual 
+    FROM detail_penjualan 
+    JOIN produk ON detail_penjualan.id_produk = produk.id_produk 
+    GROUP BY produk.id_produk 
+    ORDER BY total_terjual DESC 
+    LIMIT 1
+");
+$data_produk_terlaris = mysqli_fetch_assoc($produk_terlaris);
 
-    $query = "SELECT id_produk, COUNT(*) as jumlah_produk FROM detail_penjualan GROUP BY kode_produk ORDER BY jumlah_produk DESC LIMIT $limit";
-    $result = mysqli_query($connect, $query);
-
-    $barang_sering_dibeli = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $barang_sering_dibeli[] = $row;
-    }
-
-    return $barang_sering_dibeli;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
