@@ -28,6 +28,16 @@
         <i class="fas fa-shopping-cart"></i>
             <span>Pembelian</span></a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="?page=transaksi_admin">
+        <i class="fas fa-money-bill-wave"></i>            
+        <span>Transaksi</span></a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="?page=laporan_admin">
+        <i class="fas fa-file-alt"></i>           
+         <span>Laporan</span></a>
+    </li>
     <hr class="sidebar-divider d-none d-md-block">
     <li class="nav-item active">
         <a class="nav-link" href="logout.php">
