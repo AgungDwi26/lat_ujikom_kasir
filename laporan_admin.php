@@ -7,6 +7,7 @@
     </div>
     <hr>
     <div id="printArea">
+        <h1>Laporan Penjualan</h1>
         <table class="table table-bordered">
             <tr>
                 <th>ID Penjualan</th>
