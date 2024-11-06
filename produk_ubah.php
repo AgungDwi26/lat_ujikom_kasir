@@ -40,7 +40,7 @@
                 <td><input type="number" class="form-control" value="<?php echo $data['harga']; ?>" step="0" name="harga"></td>
             </tr>
             <tr>
-                <td>No. Telepon</td>
+                <td>Stok</td>
                 <td>:</td>
                 <td><input type="number" class="form-control" value="<?php echo $data['stok']; ?>" step="0" name="stok"></td>
             </tr>

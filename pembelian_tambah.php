@@ -7,18 +7,18 @@
 
         $query = mysqli_query($koneksi, "INSERT INTO penjualan (tanggal_penjualan, id_pelanggan) VALUES ('$tanggal', '$id_pelanggan')");
         
-        $idTerakhir = mysqli_fetch_array(mysqli_query($koneksi, "SELECT*FROM penjualan ORDER BY id_penjualan DESC"));
+        $idTerakhir = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM penjualan ORDER BY id_penjualan DESC"));
         $id_penjualan = $idTerakhir['id_penjualan'];
         
         foreach($produk as $key=>$val) {
-            $pr = mysqli_fetch_array(mysqli_query($koneksi, "SELECT*FROM produk where id_produk=$key"));
+            $pr = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM produk WHERE id_produk=$key"));
             
             if($val > 0) {
                 $sub = $val * $pr['harga'];
                 $total += $sub;
                 $query = mysqli_query($koneksi, "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah_produk, subtotal) VALUES ('$id_penjualan', '$key', '$val', '$sub')");
 
-                $updateProduk = mysqli_query($koneksi, "UPDATE produk set stok=stok-$val WHERE id_produk=$key");
+                $updateProduk = mysqli_query($koneksi, "UPDATE produk SET stok=stok-$val WHERE id_produk=$key");
             }
         }
 
@@ -49,7 +49,7 @@
                     <select name="id_pelanggan" class="form-control form-select" id="id_pelanggan">
                         <option value="">Pilih Pelanggan</option>
                         <?php 
-                            $p = mysqli_query($koneksi, "SELECT*FROM pelanggan");
+                            $p = mysqli_query($koneksi, "SELECT * FROM pelanggan");
                             while($pel = mysqli_fetch_array($p)){
                                 ?>
                                 <option value="<?php echo $pel['id_pelanggan'];?>"><?php echo $pel['nama_pelanggan'];?></option>
@@ -60,14 +60,22 @@
                 </td>
             </tr>  
             <?php 
-                $pro = mysqli_query($koneksi, "SELECT*FROM produk");
+                $pro = mysqli_query($koneksi, "SELECT * FROM produk");
                 while($produk = mysqli_fetch_array($pro)){                
             ?>
             <tr>
-                <td><?php echo $produk['nama_produk'] . '(Stock : '.$produk['stok'].')'; ?></td>
+                <td><?php echo $produk['nama_produk'] . ' (Stock: ' . $produk['stok'] . ')'; ?></td>
                 <td>:</td>
-                <td><input type="number" class="form-control product-input" 
-                step="0" value="0" max="<?php echo $produk['stok']; ?>" name="produk[<?php echo $produk['id_produk']; ?>]"></td>
+                <td>
+                    <input 
+                        type="number" 
+                        class="form-control product-input" 
+                        step="0" 
+                        value="0" 
+                        max="<?php echo $produk['stok']; ?>" 
+                        name="produk[<?php echo $produk['id_produk']; ?>]" 
+                        <?php echo $produk['stok'] == 0 ? 'disabled' : ''; ?>>
+                </td>
             </tr>
             <?php 
                 }

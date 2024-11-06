@@ -11,6 +11,39 @@
     <title>Detail Pembelian</title>
     <link rel="stylesheet" href="path/to/bootstrap.css">
     <link rel="stylesheet" href="path/to/fontawesome.css">
+    <style>
+        /* Default Styles */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Styles for printing */
+        @media print {
+            body {
+                width: 58mm;
+                font-size: 12px;
+            }
+            .container-fluid, .d-sm-flex, .btn {
+                display: none;
+            }
+            #printArea {
+                width: 100%;
+                display: block;
+                padding: 10px;
+                border: none;
+            }
+            table {
+                width: 100%;
+            }
+            td, th {
+                padding: 5px 0;
+            }
+            h1 {
+                font-size: 16px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -23,40 +56,27 @@
         </div>
 
         <div id="printArea">
-            <form method="post">
-                <table class="table table-bordered">
-                    <tr>
-                        <td width="200">Nama Pelanggan</td>
-                        <td width="1">:</td>
-                        <td>
-                           <?php echo $data['nama_pelanggan']; ?>
-                        </td>
-                    </tr>  
-                    <?php 
-                        $pro = mysqli_query($koneksi, "SELECT * FROM detail_penjualan LEFT JOIN produk ON produk.id_produk = detail_penjualan.id_produk WHERE id_penjualan = $id");
-                        while($produk = mysqli_fetch_array($pro)){                
-                    ?>
-                    <tr>
-                        <td><?php echo $produk['nama_produk']; ?></td>
-                        <td>:</td>
-                        <td>
-                            Harga Satuan: <?php echo $produk['harga']; ?> <br>
-                            Jumlah: <?php echo $produk['jumlah_produk']; ?> <br>
-                            Sub Total: <?php echo $produk['subtotal']; ?>
-                        </td>
-                    </tr>
-                    <?php 
-                        }
-                    ?>
-                    <tr>
-                        <td>Total</td>
-                        <td>:</td>
-                        <td>
-                             <?php echo $data['total_harga']; ?>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+            <h1>STRUK PEMBELIAN</h1>
+            <p><strong>Nama Pelanggan:</strong> <?php echo $data['nama_pelanggan']; ?></p>
+            <table class="table">
+                <?php 
+                    $pro = mysqli_query($koneksi, "SELECT * FROM detail_penjualan LEFT JOIN produk ON produk.id_produk = detail_penjualan.id_produk WHERE id_penjualan = $id");
+                    while($produk = mysqli_fetch_array($pro)){                
+                ?>
+                <tr>
+                    <td><?php echo $produk['nama_produk']; ?></td>
+                    <td>Qty: <?php echo $produk['jumlah_produk']; ?></td>
+                    <td align="right">Rp <?php echo number_format($produk['subtotal'], 0, ',', '.'); ?></td>
+                </tr>
+                <?php 
+                    }
+                ?>
+                <tr>
+                    <td colspan="2"><strong>Total</strong></td>
+                    <td align="right"><strong>Rp <?php echo number_format($data['total_harga'], 0, ',', '.'); ?></strong></td>
+                </tr>
+            </table>
+            <p align="center">Terima Kasih atas Kunjungan Anda!</p>
         </div>
     </div>
 

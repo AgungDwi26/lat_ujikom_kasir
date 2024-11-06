@@ -1,4 +1,4 @@
-<?php
+<?php 
 include "koneksi.php"; 
 
 if (!isset($_SESSION['user'])) {
@@ -6,6 +6,7 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
+// Query produk terlaris dan pelanggan teraktif
 $produk_terlaris = mysqli_query($koneksi, "
     SELECT produk.nama_produk, produk.harga, SUM(detail_penjualan.jumlah_produk) AS total_terjual 
     FROM detail_penjualan 
@@ -16,6 +17,15 @@ $produk_terlaris = mysqli_query($koneksi, "
 ");
 $data_produk_terlaris = mysqli_fetch_assoc($produk_terlaris);
 
+$query_pelanggan_teraktif = mysqli_query($koneksi, "
+    SELECT pelanggan.nama_pelanggan, COUNT(penjualan.id_penjualan) AS total_kunjungan 
+    FROM penjualan 
+    LEFT JOIN pelanggan ON pelanggan.id_pelanggan = penjualan.id_pelanggan 
+    GROUP BY pelanggan.id_pelanggan 
+    ORDER BY total_kunjungan DESC 
+    LIMIT 1
+");
+$data_pelanggan_teraktif = mysqli_fetch_array($query_pelanggan_teraktif);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,11 +35,22 @@ $data_produk_terlaris = mysqli_fetch_assoc($produk_terlaris);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Dashboard for Admin">
-    <meta name="author" content="">
     <title>Aplikasi Kasir</title>
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS to make footer sticky at the bottom */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fc;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -81,27 +102,27 @@ $data_produk_terlaris = mysqli_fetch_assoc($produk_terlaris);
                 </nav>
 
                 <div id="layoutSidenav_content">
-            <main>
-
-                <?php $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-                include $page . '.php';
-
-                ?>
-
-            </main>
+                    <main>
+                        <?php 
+                        $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+                        include $page . '.php';
+                        ?>
+                    </main>
+                </div>
             </div>
-            <footer class="py-4 bg-light mt-auto text-center sticky-footer">
+            <footer class="sticky-footer text-center">
                 <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
+                    <div class="d-flex align-items-center justify-content-center small">
                         <div class="text-muted">Copyright &copy; Aplikasi Kasir 2024</div>
                     </div>
                 </div>
             </footer>
+        </div>
     </div>
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    <div class="modal fade" id="logout Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
