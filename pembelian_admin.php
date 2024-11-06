@@ -5,7 +5,6 @@
             <i class="fas fa-download fa-sm text-white-50"></i> Print Data
         </a>
         
-        <a href="?page=pembelian_tambah" class="btn btn-primary">+ Tambah Pembelian</a>
     </div>
     <hr>
     <div id="printArea">
@@ -28,9 +27,7 @@
                 <td>Rp <?php echo number_format($data['total_harga'], 0, ',', '.'); ?></td>
                 <td>
                     <a href="?page=penjualan_detail&&id=<?php echo $data['id_penjualan']; ?>" class="btn btn-warning">Detail</a>
-                    |
-                    <a href="?page=penjualan_hapus&&id=<?php echo $data['id_penjualan']; ?>" class="btn btn-danger">Hapus</a>
-                </td>
+                                    </td>
             </tr>
             <?php
         }

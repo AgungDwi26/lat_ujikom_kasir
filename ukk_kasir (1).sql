@@ -33,7 +33,7 @@ CREATE TABLE `detail_penjualan` (
   `id_produk` int DEFAULT NULL,
   `jumlah_produk` int DEFAULT NULL,
   `subtotal` decimal(10,0) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `detail_penjualan`
@@ -75,7 +75,7 @@ CREATE TABLE `pelanggan` (
   `nama_pelanggan` varchar(255) DEFAULT NULL,
   `alamat` text,
   `no_telepon` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pelanggan`
@@ -99,7 +99,7 @@ CREATE TABLE `penjualan` (
   `tanggal_penjualan` date DEFAULT NULL,
   `total_harga` decimal(10,0) DEFAULT NULL,
   `id_pelanggan` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penjualan`
@@ -128,7 +128,7 @@ CREATE TABLE `produk` (
   `nama_produk` varchar(255) DEFAULT NULL,
   `harga` decimal(10,0) DEFAULT NULL,
   `stok` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `produk`
@@ -151,8 +151,8 @@ CREATE TABLE `user` (
   `nama` varchar(255) DEFAULT NULL,
   `username` varchar(30) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `level` enum('admin','petugas') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `level` enum('admin','petugas') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`

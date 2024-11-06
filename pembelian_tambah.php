@@ -40,7 +40,7 @@
         <a href="?page=pembelian" class="btn btn-danger">Kembali</a>
     </div>
 
-    <form method="post" onsubmit="return validateForm()">
+    <form method="post" onsubmit="return validateForm()" id="purchaseForm">
         <table class="table table-borderless">
             <tr>
                 <td width="200">Nama Pelanggan</td>
@@ -75,11 +75,19 @@
                         max="<?php echo $produk['stok']; ?>" 
                         name="produk[<?php echo $produk['id_produk']; ?>]" 
                         <?php echo $produk['stok'] == 0 ? 'disabled' : ''; ?>>
+                    <input type="hidden" class="product-price" value="<?php echo $produk['harga']; ?>">
                 </td>
             </tr>
             <?php 
                 }
             ?>
+            <tr>
+                <td></td>
+                <td><strong>Total Harga:</strong></td>
+                <td>
+                    <span id="total_harga">Rp 0</span> 
+                </td>
+            </tr>
             <tr>
                 <td></td>
                 <td></td>
@@ -98,13 +106,11 @@ function validateForm() {
     const productInputs = document.querySelectorAll('.product-input');
     let isProductSelected = false;
 
-    // Check if a customer is selected
     if (pelanggan === "") {
         alert("Pilih pelanggan terlebih dahulu!");
         return false;
     }
 
-    // Check if at least one product quantity is greater than 0
     productInputs.forEach(input => {
         if (input.value > 0) {
             isProductSelected = true;
@@ -118,4 +124,33 @@ function validateForm() {
 
     return true;
 }
+
+function updateTotalPrice() {
+    const productInputs = document.querySelectorAll('.product-input');
+    let total = 0;
+
+    productInputs.forEach(input => {
+        const productId = input.name.replace('produk[', '').replace(']', ''); 
+        const quantity = parseInt(input.value);
+        
+        if (quantity > 0) {
+            const price = parseInt(input.closest('tr').querySelector('.product-price').value);
+            
+            const subtotal = quantity * price;
+            total += subtotal;
+        }
+    });
+
+    document.getElementById('total_harga').textContent = "Rp " + total.toLocaleString();
+}
+
+document.querySelectorAll('.product-input').forEach(input => {
+    input.addEventListener('input', updateTotalPrice);
+});
+
+document.getElementById('purchaseForm').addEventListener('reset', function() {
+    setTimeout(updateTotalPrice, 0); 
+});
+
+updateTotalPrice();
 </script>

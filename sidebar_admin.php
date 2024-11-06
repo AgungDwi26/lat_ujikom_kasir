@@ -9,22 +9,22 @@
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="index.php">
+        <a class="nav-link" href="admin_dashboard.php">
             <i class="fas fa-fw fa-home"></i>
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="?page=pelanggan">
+        <a class="nav-link" href="?page=pelanggan_admin">
             <i class="fas fa-fw fa-users"></i>
             <span>Pelanggan</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="?page=produk">
+        <a class="nav-link" href="?page=produk_admin">
         <i class="fas fa-box-open"></i>
             <span>Produk/Barang</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="?page=pembelian">
+        <a class="nav-link" href="?page=pembelian_admin">
         <i class="fas fa-shopping-cart"></i>
             <span>Pembelian</span></a>
     </li>

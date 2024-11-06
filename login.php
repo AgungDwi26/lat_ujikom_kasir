@@ -10,9 +10,16 @@ if(isset($_POST['username'])) {
     if(mysqli_num_rows($cek) > 0) {
         $data = mysqli_fetch_array($cek);
         $_SESSION['user'] = $data;
-        echo '<script>alert("Selamat datang!"); window.location.href="index.php";</script>';
+
+        if($data['level'] == 'admin') {
+            echo '<script>alert("Selamat datang Admin!"); window.location.href="admin_dashboard.php";</script>';
+        } elseif($data['level'] == 'petugas') {
+            echo '<script>alert("Selamat datang Petugas!"); window.location.href="index.php";</script>';
+        } else {
+            echo '<script>alert("Level user tidak dikenali!"); window.location.href="login.php";</script>';
+        }
     } else {
-        echo '<script>alert("username/password salah!"); window.location.href="login.php";</script>';
+        echo '<script>alert("Username/password salah!"); window.location.href="login.php";</script>';
     }
 }
 ?>
@@ -29,11 +36,9 @@ if(isset($_POST['username'])) {
 
     <title>Login Aplikasi Kasir</title>
 
-    <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
@@ -51,7 +56,7 @@ if(isset($_POST['username'])) {
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
                                     </div>
                                     <form class="user" method="post">
                                         <div class="form-group">
@@ -75,14 +80,11 @@ if(isset($_POST['username'])) {
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 </body>
 

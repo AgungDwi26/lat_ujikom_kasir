@@ -6,25 +6,6 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
-$produk_terlaris = mysqli_query($koneksi, "
-    SELECT produk.nama_produk, produk.harga, SUM(detail_penjualan.jumlah_produk) AS total_terjual 
-    FROM detail_penjualan 
-    JOIN produk ON detail_penjualan.id_produk = produk.id_produk 
-    GROUP BY produk.id_produk 
-    ORDER BY total_terjual DESC 
-    LIMIT 1
-");
-$data_produk_terlaris = mysqli_fetch_assoc($produk_terlaris);
-
-$query_pelanggan_teraktif = mysqli_query($koneksi, "
-    SELECT pelanggan.nama_pelanggan, COUNT(penjualan.id_penjualan) AS total_kunjungan 
-    FROM penjualan 
-    LEFT JOIN pelanggan ON pelanggan.id_pelanggan = penjualan.id_pelanggan 
-    GROUP BY pelanggan.id_pelanggan 
-    ORDER BY total_kunjungan DESC 
-    LIMIT 1
-");
-$data_pelanggan_teraktif = mysqli_fetch_array($query_pelanggan_teraktif);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +34,7 @@ $data_pelanggan_teraktif = mysqli_fetch_array($query_pelanggan_teraktif);
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include 'sidebar.php'; ?>
+        <?php include 'sidebar_admin.php'; ?>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -94,7 +75,7 @@ $data_pelanggan_teraktif = mysqli_fetch_array($query_pelanggan_teraktif);
                 <div id="layoutSidenav_content">
                     <main>
                         <?php 
-                        $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+                        $page = isset($_GET['page']) ? $_GET['page'] : 'home_petugas';
                         include $page . '.php';
                         ?>
                     </main>

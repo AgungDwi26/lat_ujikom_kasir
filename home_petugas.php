@@ -70,28 +70,7 @@
             </div>
         </div>
     </div>
-    <div class="jumbotron">
-    <div class="row">
-        <!-- Kolom Produk Terlaris -->
-        <div class="col-md-6">
-            <h1 class="display-4">Produk Terlaris!</h1>
-            <p class="lead">Produk yang paling banyak terjual di toko ini adalah:</p>
-            <hr class="my-4">
-            <h2><?php echo $data_produk_terlaris['nama_produk']; ?></h2>
-            <p>Harga: Rp <?php echo number_format($data_produk_terlaris['harga'], 0, ',', '.'); ?></p>
-            <p>Jumlah Terjual: <?php echo $data_produk_terlaris['total_terjual']; ?> pcs</p>
-        </div>
-
-        <!-- Kolom Pelanggan Teraktif -->
-        <div class="col-md-6">
-            <h1 class="display-4">Pelanggan Teraktif!</h1>
-            <p class="lead">Pelanggan yang paling sering berkunjung adalah:</p>
-            <hr class="my-4">
-            <h2><?php echo $data_pelanggan_teraktif['nama_pelanggan']; ?></h2>
-            <p>Jumlah Kunjungan: <?php echo $data_pelanggan_teraktif['total_kunjungan']; ?> kali</p>
-        </div>
-    </div>
-</div>
+    
 
 
 
