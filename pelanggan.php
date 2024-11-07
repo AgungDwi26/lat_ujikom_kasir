@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Pelanggan</h1>
-        <button class="d-flex d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="printDiv('printArea')">
+        <button class="d-flex d-sm-inline-block btn btn-sm btn-info shadow-sm" onclick="printDiv('printArea')">
             <i class="fas fa-download fa-sm text-white-50"></i> Print Data
         </button>
         
-        <a href="?page=pelanggan_tambah" class="btn btn-primary">+ Tambah Data</a>
+        <a href="?page=pelanggan_tambah" class="btn btn-info">+ Tambah Data</a>
     </div>
     <hr>
     <div id="printArea">

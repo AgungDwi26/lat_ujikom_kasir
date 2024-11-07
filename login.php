@@ -42,7 +42,7 @@ if(isset($_POST['username'])) {
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-info">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
@@ -65,7 +65,7 @@ if(isset($_POST['username'])) {
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" name="password" id="exampleInputPassword" placeholder="Masukan Password">
                                         </div>
-                                        <button type="submit" class="btn btn-outline-primary w-100">Login</button>
+                                        <button type="submit" class="btn btn-outline-info w-100">Login</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
